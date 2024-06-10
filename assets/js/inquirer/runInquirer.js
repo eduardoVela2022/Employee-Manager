@@ -7,6 +7,11 @@ const {
   addEmployeeQuestions,
   updateEmployeeRoleQuestions,
 } = require("./questions");
+const {
+  getAllDepartments,
+  getAllRoles,
+  getAllEmployees,
+} = require("../queries/queries");
 
 // Runs inquirer
 function runInquirer() {
@@ -15,13 +20,16 @@ function runInquirer() {
     // Checks which action the user selected from the action menu
     switch (answers.selectedAction) {
       case "View all departments":
-        // SELECT
+        // Gets all the departments from the database
+        getAllDepartments();
         break;
       case "View all roles":
-        // SELECT
+        // Gets all the roles from the databases
+        getAllRoles();
         break;
       case "View all employees":
-        // SELECT
+        // Gets all the employees from the database
+        getAllEmployees();
         break;
       case "Add a department":
         inquirer.prompt(addDepartmentQuestions).then((answers) => {
