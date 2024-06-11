@@ -11,6 +11,10 @@ const {
   getAllDepartments,
   getAllRoles,
   getAllEmployees,
+  addDepartment,
+  addRole,
+  addEmployee,
+  updateEmployeeRole,
 } = require("../queries/queries");
 
 // Runs inquirer
@@ -33,22 +37,32 @@ function runInquirer() {
         break;
       case "Add a department":
         inquirer.prompt(addDepartmentQuestions).then((answers) => {
-          // INSERT
+          // Adds a new department to the database
+          addDepartment(answers.name);
         });
         break;
       case "Add a role":
         inquirer.prompt(addRoleQuestions).then((answers) => {
-          // INSERT
+          // Gets data from the answered questions
+          const { title, salary, department } = answers;
+          // Adds a new role to the database
+          addRole(title, salary, department);
         });
         break;
       case "Add an employee":
         inquirer.prompt(addEmployeeQuestions).then((answers) => {
-          // INSERT
+          // Gets data from the answered questions
+          const { firstName, lastName, role, manager } = answers;
+          // Adds a new employee to the database
+          addEmployee(firstName, lastName, role, manager);
         });
         break;
       case "Update an employee's role":
         inquirer.prompt(updateEmployeeRoleQuestions).then((answers) => {
-          // UPDATE
+          // Gets data from the answered questions
+          const { employee, newRole } = answers;
+          // Updates the role of an employee
+          updateEmployeeRole(employee, newRole);
         });
         break;
       case "Close the program":

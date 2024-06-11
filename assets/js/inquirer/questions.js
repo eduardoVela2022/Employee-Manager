@@ -64,8 +64,8 @@ const addEmployeeQuestions = [
   },
   {
     type: "input",
-    name: "department",
-    message: "What department does the employee belong to? ",
+    name: "manager",
+    message: "What's the manager of the new employee? ",
   },
 ];
 

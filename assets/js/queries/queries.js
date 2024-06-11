@@ -53,4 +53,70 @@ async function getAllEmployees() {
   await client.end();
 }
 
-module.exports = { getAllDepartments, getAllRoles, getAllEmployees };
+// Adds a department to the database
+async function addDepartment(name) {
+  // Connects to the database
+  await client.connect();
+
+  // INSERT query
+  await client.query(`INSERT INTO departments (name) VALUES ($1)`, [name]);
+
+  // Disconnects from the database
+  await client.end();
+}
+
+// Adds a role to the database
+async function addRole(title, salary, departmentId) {
+  // Connects to the database
+  await client.connect();
+
+  // INSERT query
+  await client.query(
+    `INSERT INTO roles (title, salary, department_id) VALUES ($1, $2, $3)`,
+    [title, salary, departmentId]
+  );
+
+  // Disconnects from the database
+  await client.end();
+}
+
+// Adds a employee to the database
+async function addEmployee(firstName, lastName, roleId, managerId) {
+  // Connects to the database
+  await client.connect();
+
+  // INSERT query
+  await client.query(
+    `INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES ($1, $2, $3, $4)`,
+    [firstName, lastName, roleId, managerId]
+  );
+
+  // Disconnects from the database
+  await client.end();
+}
+
+// Updates the role of an employee
+async function updateEmployeeRole(id, newRoleId) {
+  // Connects to the database
+  await client.connect();
+
+  // INSERT query
+  await client.query(`UPDATE employees SET role_id = $1 WHERE id = $2`, [
+    newRoleId,
+    id,
+  ]);
+
+  // Disconnects from the database
+  await client.end();
+}
+
+// Exports
+module.exports = {
+  getAllDepartments,
+  getAllRoles,
+  getAllEmployees,
+  addDepartment,
+  addRole,
+  addEmployee,
+  updateEmployeeRole,
+};
