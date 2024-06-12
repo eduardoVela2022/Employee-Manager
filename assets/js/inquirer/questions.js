@@ -1,11 +1,3 @@
-// Imports
-const {
-  getDepartmentNames,
-  getEmployeeNames,
-  getRoleTitles,
-  getEmployeeManagerNames,
-} = require("../queries/questions");
-
 // Action menu questions
 const actionMenuQuestions = [
   {
@@ -35,9 +27,9 @@ const addDepartmentQuestions = [
 ];
 
 // Questions to add a new role
-async function addRoleQuestions() {
-  // Gets the names of the departments from the database
-  const departmentNames = await getDepartmentNames();
+function addRoleQuestions(departmentList) {
+  // Gets the names of the departments from the department list
+  const departmentNames = departmentList.map((department) => department.name);
 
   // Creates question list
   const questions = [
@@ -64,10 +56,13 @@ async function addRoleQuestions() {
 }
 
 // Questions to add a new employee
-async function addEmployeeQuestions() {
-  // Gets the titles of the roles from the database
-  const roleTitles = await getRoleTitles();
-  const managerNames = await getEmployeeManagerNames();
+function addEmployeeQuestions(roleList, employeeList) {
+  // Gets the titles of the roles from role list
+  const roleTitles = roleList.map((role) => role.title);
+  // Gets the manager names from the employee List
+  const managerNames = employeeList.filter(
+    (employee) => employee.role_id === 4
+  );
 
   // Creates question list
   const questions = [
@@ -100,22 +95,24 @@ async function addEmployeeQuestions() {
 }
 
 // Questions to update the role of an employee
-async function updateEmployeeRoleQuestions() {
-  // Gets the names of the employees from the database
-  const employeeNames = await getEmployeeNames();
-  // Gets the titles of the roles from the database
-  const roleTitles = await getRoleTitles();
+function updateEmployeeRoleQuestions(employeeList, roleList) {
+  // Gets the names of the employees from the employee list
+  const employeeNames = employeeList.map(
+    (employee) => `${employee.first_name} ${employee.last_name}`
+  );
+  // Gets the titles of the roles from the role list
+  const roleTitles = roleList.map((role) => role.title);
 
   // Creates question list
   const questions = [
     {
-      type: "list",
-      name: "employee",
+      type: "rawlist",
+      name: "employeeName",
       message: "What's the employee you want to change the role of? ",
       choices: employeeNames,
     },
     {
-      type: "list",
+      type: "rawlist",
       name: "newRole",
       message: "What's the new role of the employee? ",
       choices: roleTitles,
