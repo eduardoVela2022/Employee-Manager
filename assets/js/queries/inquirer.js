@@ -103,24 +103,6 @@ async function updateEmployeeRole(employeeId, newRoleId) {
   await disconnectFromDatabase(client);
 }
 
-// Gets the id of a department by searching for its name in the database
-async function getIdFromDepartmentName(name) {
-  // Connects client to database
-  const client = await connectToDatabase();
-
-  // SELECT query
-  const query = await client.query(
-    `SELECT id FROM departments WHERE name = $1`,
-    [name]
-  );
-
-  // Disconnects client from database
-  await disconnectFromDatabase(client);
-
-  // Returns the id of the department
-  return query.rows[0].id;
-}
-
 // Exports
 module.exports = {
   getAllDepartments,

@@ -60,9 +60,9 @@ function addEmployeeQuestions(roleList, employeeList) {
   // Gets the titles of the roles from role list
   const roleTitles = roleList.map((role) => role.title);
   // Gets the manager names from the employee List
-  const managerNames = employeeList.filter(
-    (employee) => employee.role_id === 4
-  );
+  const managerNames = employeeList
+    .filter((employee) => employee.role_id === 4)
+    .map((employee) => `${employee.first_name} ${employee.last_name}`);
 
   // Creates question list
   const questions = [
@@ -77,16 +77,16 @@ function addEmployeeQuestions(roleList, employeeList) {
       message: "What's the last name of the new employee? ",
     },
     {
-      type: "list",
+      type: "rawlist",
       name: "role",
       message: "What's the role of the new employee? ",
       choices: roleTitles,
     },
     {
-      type: "list",
+      type: "rawlist",
       name: "manager",
       message: "What's the manager of the new employee? ",
-      choices: managerNames,
+      choices: [...managerNames, "No one"],
     },
   ];
 

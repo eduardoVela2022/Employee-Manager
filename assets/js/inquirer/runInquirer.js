@@ -15,7 +15,6 @@ const {
   addRole,
   addEmployee,
   updateEmployeeRole,
-  getIdFromDepartmentName,
 } = require("../queries/inquirer");
 
 // States
@@ -64,10 +63,15 @@ async function runInquirer() {
           .then(async (answers) => {
             // Gets data from the answered questions
             const { title, salary, department } = answers;
-            const departmentId = await getIdFromDepartmentName(department);
+
+            // Gets selected department from the department list
+            console.log(departmentList);
+            const selectedDepartment = departmentList.filter(
+              (item) => item.name === department
+            );
 
             // Adds a new role to the database
-            await addRole(title, salary, departmentId);
+            await addRole(title, salary, selectedDepartment[0].id);
           });
         break;
       case "Add an employee":
@@ -76,8 +80,29 @@ async function runInquirer() {
           .then(async (answers) => {
             // Gets data from the answered questions
             const { firstName, lastName, role, manager } = answers;
-            // Adds a new employee to the database
-            await addEmployee(firstName, lastName, role, manager);
+
+            // Gets selected role from role list
+            const selectedRole = roleList.filter((item) => item.title === role);
+
+            // Gets the selected manager from the employee list
+            const selectedManager = employeeList.filter(
+              (employee) =>
+                `${employee.first_name} ${employee.last_name}` === manager
+            );
+
+            // If no manager was found, selected manager is set to null
+            if (selectedManager.length === 0) {
+              // Adds a new employee without a manager to the database
+              await addEmployee(firstName, lastName, selectedRole[0].id, null);
+            } else {
+              // Adds a new employee with a manager to the database
+              await addEmployee(
+                firstName,
+                lastName,
+                selectedRole[0].id,
+                selectedManager[0].id
+              );
+            }
           });
         break;
       case "Update an employee's role":
