@@ -27,61 +27,101 @@ const addDepartmentQuestions = [
 ];
 
 // Questions to add a new role
-const addRoleQuestions = [
-  {
-    type: "input",
-    name: "title",
-    message: "What's the title of the new role? ",
-  },
-  {
-    type: "input",
-    name: "salary",
-    message: "What's the salary of the new role? ",
-  },
-  {
-    type: "input",
-    name: "department",
-    message: "What department does this role belong to? ",
-  },
-];
+function addRoleQuestions(departmentList) {
+  // Gets the names of the departments from the department list
+  const departmentNames = departmentList.map((department) => department.name);
+
+  // Creates question list
+  const questions = [
+    {
+      type: "input",
+      name: "title",
+      message: "What's the title of the new role? ",
+    },
+    {
+      type: "input",
+      name: "salary",
+      message: "What's the salary of the new role? ",
+    },
+    {
+      type: "list",
+      name: "department",
+      message: "What department does this role belong to? ",
+      choices: departmentNames,
+    },
+  ];
+
+  // Returns question list
+  return questions;
+}
 
 // Questions to add a new employee
-const addEmployeeQuestions = [
-  {
-    type: "input",
-    name: "firstName",
-    message: "What's the first name of the new employee? ",
-  },
-  {
-    type: "input",
-    name: "lastName",
-    message: "What's the last name of the new employee? ",
-  },
-  {
-    type: "input",
-    name: "role",
-    message: "What's the role of the new employee? ",
-  },
-  {
-    type: "input",
-    name: "department",
-    message: "What department does the employee belong to? ",
-  },
-];
+function addEmployeeQuestions(roleList, employeeList) {
+  // Gets the titles of the roles from role list
+  const roleTitles = roleList.map((role) => role.title);
+  // Gets the manager names from the employee List
+  const managerNames = employeeList
+    .filter((employee) => employee.role_id === 4)
+    .map((employee) => `${employee.first_name} ${employee.last_name}`);
+
+  // Creates question list
+  const questions = [
+    {
+      type: "input",
+      name: "firstName",
+      message: "What's the first name of the new employee? ",
+    },
+    {
+      type: "input",
+      name: "lastName",
+      message: "What's the last name of the new employee? ",
+    },
+    {
+      type: "rawlist",
+      name: "role",
+      message: "What's the role of the new employee? ",
+      choices: roleTitles,
+    },
+    {
+      type: "rawlist",
+      name: "manager",
+      message: "What's the manager of the new employee? ",
+      choices: [...managerNames, "No one"],
+    },
+  ];
+
+  // Returns question list
+  return questions;
+}
 
 // Questions to update the role of an employee
-const updateEmployeeRoleQuestions = [
-  {
-    type: "input",
-    name: "employee",
-    message: "What's the employee you want to change the role of? ",
-  },
-  {
-    type: "input",
-    name: "newRole",
-    message: "What's the new role of the employee? ",
-  },
-];
+function updateEmployeeRoleQuestions(employeeList, roleList) {
+  // Gets the names of the employees from the employee list
+  const employeeNames = employeeList.map(
+    (employee) => `${employee.first_name} ${employee.last_name}`
+  );
+  // Gets the titles of the roles from the role list
+  const roleTitles = roleList.map((role) => role.title);
+
+  // Creates question list
+  const questions = [
+    {
+      type: "rawlist",
+      name: "employeeName",
+      message: "What's the employee you want to change the role of? ",
+      choices: employeeNames,
+    },
+    {
+      type: "rawlist",
+      name: "newRole",
+      message: "What's the new role of the employee? ",
+      choices: roleTitles,
+    },
+  ];
+
+  // Returns question list
+  return questions;
+}
 
 // Exports
 module.exports = {
