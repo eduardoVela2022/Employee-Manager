@@ -1,3 +1,10 @@
+const {
+  departmentNameValidation,
+  roleTitleValidation,
+  roleSalaryValidation,
+  stringValidation,
+} = require("./validation");
+
 // Action menu questions
 const actionMenuQuestions = [
   {
@@ -23,6 +30,7 @@ const addDepartmentQuestions = [
     type: "input",
     name: "name",
     message: "What's the name of the new department? ",
+    validate: departmentNameValidation,
   },
 ];
 
@@ -37,11 +45,13 @@ function addRoleQuestions(departmentList) {
       type: "input",
       name: "title",
       message: "What's the title of the new role? ",
+      validate: roleTitleValidation,
     },
     {
       type: "input",
       name: "salary",
       message: "What's the salary of the new role? ",
+      validate: roleSalaryValidation,
     },
     {
       type: "list",
@@ -70,11 +80,13 @@ function addEmployeeQuestions(roleList, employeeList) {
       type: "input",
       name: "firstName",
       message: "What's the first name of the new employee? ",
+      validate: stringValidation,
     },
     {
       type: "input",
       name: "lastName",
       message: "What's the last name of the new employee? ",
+      validate: stringValidation,
     },
     {
       type: "rawlist",

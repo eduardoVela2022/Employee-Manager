@@ -112,5 +112,4 @@ module.exports = {
   addRole,
   addEmployee,
   updateEmployeeRole,
-  getIdFromDepartmentName,
 };

@@ -65,7 +65,6 @@ async function runInquirer() {
             const { title, salary, department } = answers;
 
             // Gets selected department from the department list
-            console.log(departmentList);
             const selectedDepartment = departmentList.filter(
               (item) => item.name === department
             );
@@ -136,4 +135,4 @@ async function runInquirer() {
 }
 
 // Exports
-module.exports = runInquirer;
+module.exports = { runInquirer };
