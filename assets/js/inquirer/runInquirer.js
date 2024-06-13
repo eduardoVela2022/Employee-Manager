@@ -72,10 +72,10 @@ async function runInquirer() {
         inquirer.prompt(addDepartmentQuestions).then(async (answers) => {
           // Adds a new department to the database
           await addDepartment(answers.name);
-        });
 
-        // Returns the user to the action menu
-        await runInquirer();
+          // Returns the user to the action menu
+          await runInquirer();
+        });
 
         break;
 
@@ -94,10 +94,10 @@ async function runInquirer() {
 
             // Adds a new role to the database
             await addRole(title, salary, selectedDepartment[0].id);
-          });
 
-        // Returns the user to the action menu
-        await runInquirer();
+            // Returns the user to the action menu
+            await runInquirer();
+          });
 
         break;
 
@@ -131,10 +131,10 @@ async function runInquirer() {
                 selectedManager[0].id
               );
             }
-          });
 
-        // Returns the user to the action menu
-        await runInquirer();
+            // Returns the user to the action menu
+            await runInquirer();
+          });
 
         break;
 
@@ -161,10 +161,10 @@ async function runInquirer() {
               selectedEmployee[0].id,
               selectedRole[0].id
             );
-          });
 
-        // Returns the user to the action menu
-        await runInquirer();
+            // Returns the user to the action menu
+            await runInquirer();
+          });
 
         break;
       case "Close the program":
