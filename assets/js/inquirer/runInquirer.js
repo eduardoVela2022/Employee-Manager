@@ -16,6 +16,7 @@ const {
   addEmployee,
   updateEmployeeRole,
 } = require("../queries/inquirer");
+const { departmentTable, roleTable, employeeTable } = require("./tables");
 
 // States
 let departmentList = [];
@@ -41,7 +42,7 @@ async function runInquirer() {
     switch (answers.selectedAction) {
       case "View all departments":
         // Display department list data
-        console.log(departmentList);
+        departmentTable(departmentList);
 
         // Returns the user to the action menu
         await runInquirer();
@@ -50,7 +51,7 @@ async function runInquirer() {
 
       case "View all roles":
         // Display role list data
-        console.log(roleList);
+        roleTable(roleList, departmentList);
 
         // Returns the user to the action menu
         await runInquirer();
@@ -59,7 +60,7 @@ async function runInquirer() {
 
       case "View all employees":
         // Display employee list data
-        console.log(employeeList);
+        employeeTable(employeeList, roleList);
 
         // Returns the user to the action menu
         await runInquirer();
