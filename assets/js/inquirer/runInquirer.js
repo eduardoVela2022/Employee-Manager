@@ -36,28 +36,50 @@ async function runInquirer() {
   await loadData();
 
   // Inquirer asks the action menu questions
-  inquirer.prompt(actionMenuQuestions).then((answers) => {
+  inquirer.prompt(actionMenuQuestions).then(async (answers) => {
     // Checks which action the user selected from the action menu
     switch (answers.selectedAction) {
       case "View all departments":
         // Display department list data
         console.log(departmentList);
+
+        // Returns the user to the action menu
+        await runInquirer();
+
         break;
+
       case "View all roles":
         // Display role list data
         console.log(roleList);
+
+        // Returns the user to the action menu
+        await runInquirer();
+
         break;
+
       case "View all employees":
         // Display employee list data
         console.log(employeeList);
+
+        // Returns the user to the action menu
+        await runInquirer();
+
         break;
+
       case "Add a department":
+        // Inquirer asks the questions to add a new department to the database
         inquirer.prompt(addDepartmentQuestions).then(async (answers) => {
           // Adds a new department to the database
           await addDepartment(answers.name);
         });
+
+        // Returns the user to the action menu
+        await runInquirer();
+
         break;
+
       case "Add a role":
+        // Inquirer asks the questions to add a new role to the database
         inquirer
           .prompt(addRoleQuestions(departmentList))
           .then(async (answers) => {
@@ -72,8 +94,14 @@ async function runInquirer() {
             // Adds a new role to the database
             await addRole(title, salary, selectedDepartment[0].id);
           });
+
+        // Returns the user to the action menu
+        await runInquirer();
+
         break;
+
       case "Add an employee":
+        // Inquirer asks the questions to add a new employee to the database
         inquirer
           .prompt(addEmployeeQuestions(roleList, employeeList))
           .then(async (answers) => {
@@ -103,8 +131,14 @@ async function runInquirer() {
               );
             }
           });
+
+        // Returns the user to the action menu
+        await runInquirer();
+
         break;
+
       case "Update an employee's role":
+        // Inquirer asks the questiosn to update the role of a employee to the database
         inquirer
           .prompt(updateEmployeeRoleQuestions(employeeList, roleList))
           .then(async (answers) => {
@@ -127,6 +161,10 @@ async function runInquirer() {
               selectedRole[0].id
             );
           });
+
+        // Returns the user to the action menu
+        await runInquirer();
+
         break;
       case "Close the program":
         break;
