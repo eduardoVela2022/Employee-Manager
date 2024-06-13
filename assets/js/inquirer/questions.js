@@ -54,7 +54,7 @@ function addRoleQuestions(departmentList) {
       validate: roleSalaryValidation,
     },
     {
-      type: "list",
+      type: "rawlist",
       name: "department",
       message: "What department does this role belong to? ",
       choices: departmentNames,
