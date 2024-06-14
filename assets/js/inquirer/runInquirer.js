@@ -192,7 +192,7 @@ async function runInquirer() {
         break;
 
       case "Update an employee's role":
-        // Checks if the role list isn't empty
+        // Checks if the employee list isn't empty
         if (employeeList.length !== 0) {
           // Inquirer asks the questiosn to update the role of a employee to the database
           inquirer
