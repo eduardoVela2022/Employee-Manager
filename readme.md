@@ -57,7 +57,7 @@ To use Employee Manager, check out the following walkthrough video:
   - Carlson, B. (n.d.-a). new Client. Pg.client – node-postgres. https://node-postgres.com/apis/client
 
 - To learn how to use the “inquirer” npm package:
-  npm. (n.d.). Inquirer.js. Inquirer - npm. https://www.npmjs.com/package/inquirer
+  - npm. (n.d.). Inquirer.js. Inquirer - npm. https://www.npmjs.com/package/inquirer
 
 ## License
 

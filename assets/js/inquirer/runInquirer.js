@@ -41,8 +41,16 @@ async function runInquirer() {
     // Checks which action the user selected from the action menu
     switch (answers.selectedAction) {
       case "View all departments":
-        // Display department list data
-        departmentTable(departmentList);
+        // Checks if the department list isn't empty
+        if (departmentList.length !== 0) {
+          // If it isn't, display department list data
+          departmentTable(departmentList);
+        } else {
+          // If it is, display the following message
+          console.log(
+            '\nThere are currently no departments. Add one by using the "Add a department" option.\n'
+          );
+        }
 
         // Returns the user to the action menu
         await runInquirer();
@@ -50,8 +58,16 @@ async function runInquirer() {
         break;
 
       case "View all roles":
-        // Display role list data
-        roleTable(roleList, departmentList);
+        // Checks if the role list isn't empty
+        if (roleList.length !== 0) {
+          // If it isn't, display role list data
+          roleTable(roleList, departmentList);
+        } else {
+          // If it is, display the following message
+          console.log(
+            '\nThere are currently no roles. Add one by using the "Add a role" option.\n'
+          );
+        }
 
         // Returns the user to the action menu
         await runInquirer();
@@ -59,8 +75,16 @@ async function runInquirer() {
         break;
 
       case "View all employees":
-        // Display employee list data
-        employeeTable(employeeList, roleList);
+        // Checks if the employee list isn't empty
+        if (employeeList.length !== 0) {
+          // If it isn't, display employee list data
+          employeeTable(employeeList, roleList);
+        } else {
+          // If it is, display the following message
+          console.log(
+            '\nThere are currently no employees. Add one by using the "Add an employee" option.\n'
+          );
+        }
 
         // Returns the user to the action menu
         await runInquirer();
