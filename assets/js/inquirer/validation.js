@@ -1,3 +1,4 @@
+// Imports
 const { getAllDepartments, getAllRoles } = require("../queries/inquirer");
 
 // Validates a new department's name
