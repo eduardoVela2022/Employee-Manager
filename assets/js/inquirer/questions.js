@@ -71,9 +71,9 @@ function addEmployeeQuestions(roleList, employeeList) {
   // Gets the titles of the roles from role list
   const roleTitles = roleList.map((role) => role.title);
   // Gets the manager names from the employee List
-  const managerNames = employeeList
-    .filter((employee) => employee.role_id === 4)
-    .map((employee) => `${employee.first_name} ${employee.last_name}`);
+  const managerNames = employeeList.map(
+    (employee) => `${employee.first_name} ${employee.last_name}`
+  );
 
   // Creates question list
   const questions = [
