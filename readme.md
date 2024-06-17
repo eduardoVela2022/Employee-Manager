@@ -47,7 +47,7 @@ Employee manager is a simple console application that allows you to keep track o
 
 ## Usage
 
-To use Employee Manager, check out the following walkthrough video:
+To use Employee Manager, check out the following walkthrough video: https://drive.google.com/file/d/1tgzuKTb-eU9yzQEBI9EiSUqIXtigpwNi/view?usp=sharing
 
 ## Credits
 
