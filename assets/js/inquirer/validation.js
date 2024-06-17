@@ -67,6 +67,7 @@ function stringValidation(string) {
   return true;
 }
 
+// Exports
 module.exports = {
   departmentNameValidation,
   roleTitleValidation,
